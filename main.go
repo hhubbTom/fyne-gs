@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"fyne-gs/client"
 	"fyne-gs/render"
 
@@ -10,6 +11,29 @@ import (
 	"fyne.io/fyne/v2/layout"
 	"fyne.io/fyne/v2/widget"
 )
+
+// 从FPS字符串中提取数字值
+func getFPSValue(fpsStr string) int { //暂未使用
+	switch fpsStr {
+	case "30FPS":
+		return 30
+	case "60FPS":
+		return 60
+	case "90FPS":
+		return 90
+	case "120FPS":
+		return 120
+	default:
+		return 60
+	}
+}
+
+// 将字符串转换为数字
+func getNumericValue(text string) int { //暂未使用
+	var value int
+	fmt.Sscanf(text, "%d", &value)
+	return value
+}
 
 func main() {
 	a := app.New()
@@ -43,6 +67,34 @@ func main() {
 
 	// 按钮
 	nextButton := widget.NewButton("Next", createVideoWindow)
+	//待替换成下面的解析url
+	// connectButton := widget.NewButton("连接", func() {
+	//     // 获取并处理URL
+	//     serverURL := serverURLEntry.Text
+
+	//     // 创建配置
+	//     gameConfig := &config.GameConfig{
+	//         // 设置游戏配置
+	//     }
+
+	//     // 获取编解码器值
+	//     codecMap := map[string]string{
+	//         "H.264": "h264_nvenc",
+	//         "H.265": "hevc_nvenc",
+	//         "AV1":   "av1_nvenc",
+	//     }
+
+	//     codecConfig := &config.CodecConfig{
+	//         Codec:          codecMap[codecSelect.Selected],
+	//         FrameRate:      getFPSValue(fpsSelect.Selected),  // 从 FPS 字符串中提取数字值
+	//         InitialBitrate: getNumericValue(initialBitrateEntry.Text) * 1_000_000,
+	//         MaxBitrate:     getNumericValue(maxBitrateEntry.Text) * 1_000_000,
+	//     }
+
+	//     // 创建信令客户端并连接
+	//     client := signaling.NewSignalClient(gameConfig, codecConfig)
+	//     setupWebRTCConnection(client, serverURL)
+	// })
 
 	infoButton := widget.NewButton("Info", func() {
 		client.HandleInfoButton(serverEntry, codecSelect, fpsSelect, initialRateLabel, maxRateLabel, createSecondWindow)
@@ -69,6 +121,7 @@ func main() {
 	buttonContainer := container.NewHBox(
 		layout.NewSpacer(),
 		nextButton,
+		//handleConnect(serverURL.Text)   一个解析url的函数,待办
 	)
 
 	infoButtonContainer := container.NewHBox(

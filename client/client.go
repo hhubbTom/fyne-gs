@@ -8,6 +8,10 @@ import (
 	"fyne.io/fyne/v2/widget"
 )
 
+func handleConnect(serverURLText string) {
+
+}
+
 func CreateSpinBox(initialValue, minValue, maxValue int) (*fyne.Container, *widget.Label) { //为了能上下选择输入码率等信息
 	value := initialValue
 	valueLabel := widget.NewLabel(strconv.Itoa(value))
