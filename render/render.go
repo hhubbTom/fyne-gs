@@ -1,5 +1,6 @@
 package render
 
+//视频渲染组件
 import (
 	"image/color"
 	"time"
@@ -12,6 +13,15 @@ import (
 )
 
 func CreateVideoWindow(a fyne.App, parent fyne.Window) {
+	//要做的,,,,,需要用到FFmpeg吗?
+	// 创建游戏和编解码器配置
+	// 创建信令客户端
+	// 设置SDP offer处理函数
+	// 设置ICE candidate处理函数
+	// 设置对等连接
+	// 连接到服务器
+	//保活
+
 	videoWindow := a.NewWindow("Video Renderer")
 	videoWindow.Resize(fyne.NewSize(800, 600))
 
@@ -38,11 +48,9 @@ func CreateVideoWindow(a fyne.App, parent fyne.Window) {
 	rendererContainer := container.NewWithoutLayout(renderer)
 	rendererContainer.Resize(fyne.NewSize(float32(canvasWidth), float32(canvasHeight)))
 
-	// 使用 VBox 和 Spacer 将渲染器居中显示
+	// 使用 VBox 和 Spacer 将渲染器左上显示,暂未居中
 	centeredContainer := container.NewVBox(
-
 		container.NewHBox(
-			layout.NewSpacer(), // 左侧 Spacer
 			rendererContainer,  // 渲染器容器
 			layout.NewSpacer(), // 右侧 Spacer
 		),

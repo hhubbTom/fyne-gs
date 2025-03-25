@@ -8,7 +8,7 @@ import (
 	"fyne.io/fyne/v2/widget"
 )
 
-func CreateSpinBox(initialValue, minValue, maxValue int) (*fyne.Container, *widget.Label) {
+func CreateSpinBox(initialValue, minValue, maxValue int) (*fyne.Container, *widget.Label) { //为了能上下选择输入码率等信息
 	value := initialValue
 	valueLabel := widget.NewLabel(strconv.Itoa(value))
 	valueEntry := widget.NewEntry()
@@ -62,7 +62,8 @@ func CreateSpinBox(initialValue, minValue, maxValue int) (*fyne.Container, *widg
 	return spinBox, valueLabel
 }
 
-func CreateSecondWindow(a fyne.App, parent fyne.Window, serverEntry *widget.Entry, codecSelect, fpsSelect *widget.Select, initialRateLabel, maxRateLabel *widget.Label) {
+func CreateSecondWindow(a fyne.App, parent fyne.Window, serverEntry *widget.Entry, codecSelect,
+	fpsSelect *widget.Select, initialRateLabel, maxRateLabel *widget.Label) { //创建第二个窗口,信息窗口
 	secondWindow := a.NewWindow("Settings Summary")
 	secondWindow.Resize(fyne.NewSize(800, 600))
 
